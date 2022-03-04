@@ -46,15 +46,14 @@ fetch(heroURL, {
         }
     })
 
-const heroNewURL = "api/heroes/new"
-let heroForm = document.querySelector("#hero-form")
 
+let heroForm = document.querySelector("#hero-form")
 heroForm.addEventListener("submit", function (event){
     event.preventDefault()
     console.log(event.target)
-    formData = new FormData(heroForm)
-    formData.append("hero", hero)
-    fetch(heroNewURL, {
+    let heroFormData = new FormData(heroForm)
+    console.log(heroFormData)
+    fetch(heroURL, {
         method: "POST",
         credentials: "same-origin",
         headers: {
@@ -62,7 +61,7 @@ heroForm.addEventListener("submit", function (event){
             "X-Request-With": "XMLHttpRequest",
             "X-CSRFToken": csrftoken,
         },
-        body: formData,
+        body: heroFormData,
     })
         .then(response => {
             return response.json()

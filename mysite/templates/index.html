@@ -1,23 +1,27 @@
 {% load static %}
+{% load rest_framework %}
 <!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8" />
         <title>Heroes</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.8.0/css/bulma.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.9.3/css/bulma.min.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
         <script src="{% static 'scripts/main.js' %}" defer></script>
     </head>
     <h1>This is the Homepage</h1>
 
- <h1>Heroes</h1>
- <ul id="hero-display"></ul>
+ <h1 class="has-text-centered has-text-weight-bold has-text-black is-underlined">Heroes</h1>
+ <ul class="has-text-centered has-text-black" id="hero-display"></ul>
 
-    <div class="">
-        <p class="has-text-centered has-text-weight-bold">Hero Entry</p>
-        <form class="has-text-centered is-hidden" id="hero-form" method="POST" enctype="multipart/form-data">
+
+    <div>
+        <p class="has-text-centered has-text-weight-bold is-underlined">New Hero?</p>
+        <form class="has-text-centered" style="width: center;" id="hero-form" method="POST">
             {% csrf_token %}
-            {{ hero_form.as_p }}
-            <button type="submit" class="button is-small save btn btn-seceondary has-text-centered">Submit</button>
+            {% render_form hero_serializer %}
+            <button type="submit" class="button is-light save btn btn-seceondary has-text-centered">Submit</button>
         </form>
 
     </div>
