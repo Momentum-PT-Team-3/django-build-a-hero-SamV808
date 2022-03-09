@@ -10,19 +10,37 @@
         <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
         <script src="{% static 'scripts/main.js' %}" defer></script>
     </head>
-    <h1>This is the Homepage</h1>
-
- <h1 class="has-text-centered has-text-weight-bold has-text-black is-underlined">Heroes</h1>
- <ul class="has-text-centered has-text-black" id="hero-display"></ul>
-
-
-    <div>
-        <p class="has-text-centered has-text-weight-bold is-underlined">New Hero?</p>
-        <form class="has-text-centered" style="width: center;" id="hero-form" method="POST">
-            {% csrf_token %}
-            {% render_form hero_serializer %}
-            <button type="submit" class="button is-light save btn btn-seceondary has-text-centered">Submit</button>
-        </form>
-
-    </div>
+    <body>
+        <h1 class="has-text-centered has-text-weight-bold has-text-black is-underlined">Heroes</h1>
+        <ul class="h1 has-text-centered has-text-black" id="hero-display"></ul>
+        <div class='container has-text-centered'>
+            <div class='columns is-mobile is-centered'>
+              <div class='column is-4'>
+                <button class="button is-black is-large"
+                        id='btn'>Click to add a Hero</button>
+                <div class="modal">
+                  <div class="modal-background"></div>
+                  <div class="modal-content">
+          
+                    <div class='box'>
+                      <h1 class='title' 
+                          style='color:rgb(128, 0, 117)'>
+                        Hero</h1>
+                        <form class="has-text-centered" id="hero-form" method="POST">
+                            {% csrf_token %}
+                            {% render_form hero_serializer %}
+                            <button type="submit" class="button is-light save btn btn-seceondary has-text-centered">Submit</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <button class="modal-close is-large" 
+                          aria-label="close">
+                    Model
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+    </body>
 </html>
